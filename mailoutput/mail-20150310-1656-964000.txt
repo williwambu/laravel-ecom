@@ -1,0 +1,4 @@
+To: admin@localhost
+Subject: VISITOR MESSAGE
+
+A visitor with the email willi.wambu@gmail.com said ."Cool"
