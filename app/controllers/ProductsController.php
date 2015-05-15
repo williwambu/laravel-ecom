@@ -192,4 +192,29 @@ class ProductsController extends BaseController
                 'message' =>'Product updated successfully....'
             ));
     }
+
+    public function addConsumableView(){
+        return View::make('layouts.admin.add-consumable') -> with(['id'=>Input::get('id')]);
+    }
+
+    public function addConsumable(){
+        $consumble = new Consumable();
+        $consumble -> product_id = Input::get('id');
+        $consumble -> name = Input::get('name');
+        $consumble -> features = Input::get('features');
+
+        $picture = Input::file('picture');
+        $picture -> move('public/consumables',$picture -> getClientOriginalName());
+
+        $consumble -> path = 'consumables/'.$picture -> getClientOriginalName();
+        $consumble -> save();
+
+        return Response::json(array('saved'=> true),200);
+    }
+
+    public function getConsumables($id){
+        $product = Product::find($id);
+
+        return $product -> consumables;
+    }
 }

@@ -3,91 +3,101 @@
  * main application Routes
  */
 
-Route::get('/',array('uses'=>'HomeController@showIndex','as'=>'home'));
+Route::get('/', array('uses' => 'HomeController@showIndex', 'as' => 'home'));
 
-Route::get('products',array('uses'=>'MenuController@showProducts','as'=>'products'));
+Route::get('products', array('uses' => 'MenuController@showProducts', 'as' => 'products'));
 
-Route::get('products/categories/{category_id}',array('uses'=>'MenuController@showCategory','as'=>'category'));
+Route::get('products/categories/{category_id}', array('uses' => 'MenuController@showCategory', 'as' => 'category'));
 
-Route::get('products/manufacturers/{manufacturer_id}',array('uses'=>'MenuController@showManufacturer','as'=>'manufacturer'));
+Route::get('products/manufacturers/{manufacturer_id}', array('uses' => 'MenuController@showManufacturer', 'as' => 'manufacturer'));
 
-Route::get('about',array('uses'=>'HomeController@about','as'=>'about'));
+Route::get('about', array('uses' => 'HomeController@about', 'as' => 'about'));
 
-Route::get('know-bhm',array('uses'=>'HomeController@knowBhm','as'=>'know-bhm'));
+Route::get('know-bhm', array('uses' => 'HomeController@knowBhm', 'as' => 'know-bhm'));
 
-Route::get('contact-us',array('uses'=>'HomeController@contact','as'=>'contact-us'));
+Route::get('contact-us', array('uses' => 'HomeController@contact', 'as' => 'contact-us'));
 
-Route::get('faqs',array('uses'=>'HomeController@faqs','as'=>'faqs'));
+Route::get('faqs', array('uses' => 'HomeController@faqs', 'as' => 'faqs'));
 
-Route::any('photocopiers/filter',array('uses'=>'ProductsController@filterPhotocopiers','as'=>'filterPhotocopiers'));
+Route::any('photocopiers/filter', array('uses' => 'ProductsController@filterPhotocopiers', 'as' => 'filterPhotocopiers'));
 
-Route::any('catridges/filter',array('uses'=>'ProductsController@filterCatridges','as'=>'filterCatridges'));
+Route::any('catridges/filter', array('uses' => 'ProductsController@filterCatridges', 'as' => 'filterCatridges'));
 
-Route::get('shopping-cart',array('uses'=>'CartController@showCart','as'=>'cart'));
+Route::get('shopping-cart', array('uses' => 'CartController@showCart', 'as' => 'cart'));
 
-Route::get('remove-item/{row_id}',array('uses'=>'CartController@removeItem','as'=>'remove-item'));
+Route::get('remove-item/{row_id}', array('uses' => 'CartController@removeItem', 'as' => 'remove-item'));
 
-Route::post('update-row',array('uses'=>'CartController@updateRow','as'=>'update-row'));
+Route::post('update-row', array('uses' => 'CartController@updateRow', 'as' => 'update-row'));
 
-Route::any('product/{id}/addToCart',array('uses'=>'CartController@addToCart','as'=>'addToCart'));
+Route::any('product/{id}/addToCart', array('uses' => 'CartController@addToCart', 'as' => 'addToCart'));
 
-Route::get('cart-summary',array('uses'=>'CartController@cartSummary','as'=>'cart-summary'));
+Route::get('cart-summary', array('uses' => 'CartController@cartSummary', 'as' => 'cart-summary'));
 
-Route::get('order',array('uses'=>'OrderController@showOrderForm','as'=>'order'));
+Route::get('order', array('uses' => 'OrderController@showOrderForm', 'as' => 'order'));
 
-Route::post('complete',array('uses'=>'OrderController@processOrder','as'=>'submit-order'));
+Route::post('complete', array('uses' => 'OrderController@processOrder', 'as' => 'submit-order'));
 
-Route::get('admin',array('uses'=>'AdminController@adminLogin','as'=>'admin'));
+Route::get('admin', array('uses' => 'AdminController@adminLogin', 'as' => 'admin'));
 
-Route::post('post-contact',array('uses'=>'HomeController@contactUs','as'=>'post-contact-us'));
+Route::post('post-contact', array('uses' => 'HomeController@contactUs', 'as' => 'post-contact-us'));
 
-Route::get('enquire',array('uses'=>'HomeController@enquire','as'=>'enquire'));
+Route::get('enquire', array('uses' => 'HomeController@enquire', 'as' => 'enquire'));
 
-Route::post('submit-enquiry',array('uses'=>'EnquiriesController@createEnquiry','as'=>'submit-enquiry'));
+Route::post('submit-enquiry', array('uses' => 'EnquiriesController@createEnquiry', 'as' => 'submit-enquiry'));
 
-Route::post('search',array('uses'=>'SearchController@search','as'=>'search'));
+Route::post('search', array('uses' => 'SearchController@search', 'as' => 'search'));
+
+Route::get('products/{id}/consumables', array('uses' => 'ProductsController@getConsumables', 'as' => 'get-consumable'));
+
+Route::get('consumables',array('uses' => 'ConsumablesController@showAll','as' => 'consumables-all'));
+
 
 
 /*
  * admin routes
  */
-Route::post('admin/panel',array('uses'=>'AdminController@login','as'=>'login'));
+Route::post('admin/panel', array('uses' => 'AdminController@login', 'as' => 'login'));
 
-Route::get('admin/logout',array('uses'=>'AdminController@logout','as'=>'logout'));
+Route::get('admin/logout', array('uses' => 'AdminController@logout', 'as' => 'logout'));
 
-Route::get('admin/category/new',array('before'=>'auth','uses'=>'AdminNavController@createCategory','as'=>'create_category'));
+Route::get('admin/category/new', array('before' => 'auth', 'uses' => 'AdminNavController@createCategory', 'as' => 'create_category'));
 
-Route::post('admin/category/new',array('before'=>'auth','uses'=>'CategoryController@createCategory','as'=>'post_create_category'));
+Route::post('admin/category/new', array('before' => 'auth', 'uses' => 'CategoryController@createCategory', 'as' => 'post_create_category'));
 
-Route::get('admin/product/new',array('before'=>'auth','uses'=>'AdminNavController@createProduct','as'=>'create_product'));
+Route::get('admin/product/new', array('before' => 'auth', 'uses' => 'AdminNavController@createProduct', 'as' => 'create_product'));
 
-Route::get('admin/products/all',array('before'=>'auth','uses'=>'ProductsController@showAll','as'=>'all_products'));
+Route::get('admin/products/all', array('before' => 'auth', 'uses' => 'ProductsController@showAll', 'as' => 'all_products'));
 
-Route::post('admin/product/new',array('before'=>'auth','uses'=>'ProductsController@createProduct','as'=>'post_create_product'));
+Route::post('admin/product/new', array('before' => 'auth', 'uses' => 'ProductsController@createProduct', 'as' => 'post_create_product'));
 
-Route::get('edit-product',array('before'=>'auth','uses'=>'ProductsController@editProduct','as'=>'edit-product'));
+Route::get('edit-product', array('before' => 'auth', 'uses' => 'ProductsController@editProduct', 'as' => 'edit-product'));
 
-Route::post('update-product',array('before'=>'auth','uses'=>'ProductsController@updateProduct','as'=>'update-product'));
+Route::post('update-product', array('before' => 'auth', 'uses' => 'ProductsController@updateProduct', 'as' => 'update-product'));
 
-Route::get('admin/orders/all',array('before'=>'auth','uses'=>'AdminNavController@showOrders','as'=>'orders'));
+Route::get('admin/orders/all', array('before' => 'auth', 'uses' => 'AdminNavController@showOrders', 'as' => 'orders'));
 
-Route::get('admin/products/delete/{id}',array('before'=>'auth','uses'=>'ProductsController@deleteProduct','as'=>'delete-product'));
+Route::get('admin/products/delete/{id}', array('before' => 'auth', 'uses' => 'ProductsController@deleteProduct', 'as' => 'delete-product'));
 
-Route::get('admin/orders/delete/{order_id}',array('before'=>'auth','uses'=>'OrderController@deleteOrder','as'=>'delete-order'));
+Route::get('admin/orders/delete/{order_id}', array('before' => 'auth', 'uses' => 'OrderController@deleteOrder', 'as' => 'delete-order'));
 
-Route::get('admin/carousel-editor',array('before'=>'auth','uses'=>'CarouselController@edit','as'=>'edit-carousel'));
+Route::get('admin/carousel-editor', array('before' => 'auth', 'uses' => 'CarouselController@edit', 'as' => 'edit-carousel'));
 
-Route::post('admin/carousel/add-image',array('before'=>'auth','uses'=>'CarouselController@addImage','as'=>'add-image'));
+Route::post('admin/carousel/add-image', array('before' => 'auth', 'uses' => 'CarouselController@addImage', 'as' => 'add-image'));
 
-Route::get('admin/carousel/delete-image/{id}',array('before'=>'auth','uses'=>'CarouselController@removeImage','as'=>'delete-image'));
+Route::get('admin/carousel/delete-image/{id}', array('before' => 'auth', 'uses' => 'CarouselController@removeImage', 'as' => 'delete-image'));
+
+Route::get('consumables/new', array('before' => 'auth', 'uses' => 'ProductsController@addConsumableView', 'as' => 'add-consumable-view'));
+
+Route::post('consumables/new', array('before' => 'auth', 'uses' => 'ProductsController@addConsumable', 'as' => 'add-consumable'));
+
 
 /*
  * layout.master composer
  */
-View::composer('*',function($view){
+View::composer('*', function ($view) {
     $categories = Category::all();
     $manufacturers = Manufacturer::all();
-    $models= DB::table('products')->groupBy('model')->get(['model']);
+    $models = DB::table('products')->groupBy('model')->get(['model']);
     $menu_data = Category::with('manufacturers')->get();
     $cart_content = Cart::content();
     $cart_total = Cart::total();
@@ -95,32 +105,32 @@ View::composer('*',function($view){
 
     $view->with(
         [
-            'menu_data'=>$menu_data,
-            'categories'=>$categories,
-            'manufacturers'=>$manufacturers,
-            'models'=>$models,
-            'cart_total'=>$cart_total,
-            'cart_count'=>$cart_count,
-            'cart_content'=>$cart_content
+            'menu_data' => $menu_data,
+            'categories' => $categories,
+            'manufacturers' => $manufacturers,
+            'models' => $models,
+            'cart_total' => $cart_total,
+            'cart_count' => $cart_count,
+            'cart_content' => $cart_content
         ]);
 });
 
-Route::get('orders/{order_id}',function($order_id){
+Route::get('orders/{order_id}', function ($order_id) {
     $order = Order::find($order_id)->with('Products')->get();
     return $order;
 });
 
-Route::get('product/{product_id}/orders',function($id){
+Route::get('product/{product_id}/orders', function ($id) {
     $prdt = Product::find($id)->with('orders')->get();
     return $prdt;
 });
-Route::get('admin/create/new',function(){
+Route::get('admin/create/new', function () {
     $userCtrl = new AdminController();
-    $userCtrl ->createAdmin('admin','password');
+    $userCtrl->createAdmin('admin', 'password');
 });
 
-Route::get('admin/delete/{id}',function($id){
+Route::get('admin/delete/{id}', function ($id) {
     $adminCtrl = new AdminController();
 
-    $adminCtrl -> deleteAdmin($id);
+    $adminCtrl->deleteAdmin($id);
 });

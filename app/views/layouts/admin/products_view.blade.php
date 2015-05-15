@@ -3,9 +3,9 @@
 @section('content')
     <!-- content row -->
     <div class="row ">
-        <div class="col-md-10 col-md-offset-1 clear-padding">
+        <div class="col-md-11 col-md-offset-1 clear-padding">
             <!-- left panel -->
-            <div class="col-md-9 left col-md -offset-2 clear-padding">
+            <div class="col-md-10 left col-md -offset-2 clear-padding">
                 <table class="table table-striped" style="padding: 20px">
                     <thead>
                         <tr>
@@ -35,6 +35,12 @@
                                <td><form action="{{route('edit-product')}}">
                                        <input name="id" type="hidden" value="{{$product->id}}">
                                        <button class="btn btn-primary">Edit Product <span class="glyphicon glyphicon-edit"></span></button>
+                                   </form>
+                               </td>
+                               <td>
+                                   <form method="get" action="{{route('add-consumable-view')}}">
+                                       <input name="id" type="hidden" value="{{$product -> id}}">
+                                       <button class="btn btn-primary">Add Consumable <span class="glyphicon glyphicon-plus-sign"></span></button>
                                    </form>
                                </td>
                                <td><form action="{{route('delete-product')}}">
