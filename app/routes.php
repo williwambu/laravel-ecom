@@ -49,9 +49,17 @@ Route::post('search', array('uses' => 'SearchController@search', 'as' => 'search
 
 Route::get('products/{id}/consumables', array('uses' => 'ProductsController@getConsumables', 'as' => 'get-consumable'));
 
-Route::get('consumables',array('uses' => 'ConsumablesController@showAll','as' => 'consumables-all'));
+Route::get('consumables/all', array('uses' => 'ConsumablesController@showAll', 'as' => 'consumables-all'));
 
+/**
+ * Consumables cart routes
+ */
+Route::any('consumables/{id}/addToCart', array('uses' => 'ConsCartController@addToCart', 'as' => 'cons-add-to-cart'));
 
+/**
+ * Consumables admin panel
+ */
+Route::get('admin/consumables', array('uses' => 'ConsumablesController@adminShowAll', 'as' => 'admin-show-all'));
 
 /*
  * admin routes
@@ -86,11 +94,13 @@ Route::post('admin/carousel/add-image', array('before' => 'auth', 'uses' => 'Car
 
 Route::get('admin/carousel/delete-image/{id}', array('before' => 'auth', 'uses' => 'CarouselController@removeImage', 'as' => 'delete-image'));
 
-Route::get('consumables/new', array('before' => 'auth', 'uses' => 'ProductsController@addConsumableView', 'as' => 'add-consumable-view'));
+Route::get('consumables/new', array('before' => 'auth', 'uses' => 'ConsumablesController@addConsumableView', 'as' => 'add-consumable-view'));
 
-Route::post('consumables/new', array('before' => 'auth', 'uses' => 'ProductsController@addConsumable', 'as' => 'add-consumable'));
+Route::post('consumables/new', array('before' => 'auth', 'uses' => 'ConsumablesController@addConsumable', 'as' => 'add-consumable'));
 
+Route::post('admin/edit-consumable', array('before' => 'auth', 'uses' => 'ConsumablesController@editConsumable', 'as' => 'edit-consumable'));
 
+Route::post('update-consumable', array('before' => 'auth', 'uses' => 'ConsumablesController@updateConsumable', 'as' => 'update-consumable'));
 /*
  * layout.master composer
  */
@@ -134,3 +144,6 @@ Route::get('admin/delete/{id}', function ($id) {
 
     $adminCtrl->deleteAdmin($id);
 });
+
+
+Route::get('test',array('uses'=>'SMSTestingController@sendSMS','as'=>'send-sms'));

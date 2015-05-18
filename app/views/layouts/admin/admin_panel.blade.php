@@ -9,6 +9,7 @@
                 <a href="{{route('create_product')}}"><h4>Create a new Product</h4></a>
                 <a href="{{route('all_products')}}"><h4>View All Products</h4></a>
                 <a href="{{route('orders')}}"><h4>View All Orders</h4></a>
+                <a href="{{route('admin-show-all')}}" ><h4>View Consumables</h4></a>
                 <a href="{{route('edit-carousel')}}"><h4>Change Slider Images</h4></a>
                 <a href="#" ><h4 class="btn btn-danger">Delete A Product</h4></a>
             </div>

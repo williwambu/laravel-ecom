@@ -13,9 +13,9 @@ class SendSMS {
 // Specify your login credentials
 
 
-    function sendSMS($message,$recipient){
-        $username   = "MyAfricasTalkingUsername";
-        $apikey     = "MyAfricasTalkingAPIKey";
+    public function sendText($message,$recipient){
+        $username   = "muliswilliam";
+        $apikey     = "a5caa1d295e85f4e7e71eb7c6033ae63aa23955f7c2efb27615837e46870b5fb";
 
         // Create a new instance of our awesome gateway class
         $gateway    = new AfricasTalkingGateway($username, $apikey);

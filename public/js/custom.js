@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     //adjust height of product columns
     $('.product').matchHeight(true);
+
     $('.add-to-cart').click(function (event) {
         event.preventDefault();
         $.post(
@@ -94,4 +95,7 @@ $(document).ready(function () {
         $('#features').val($(".Editor-editor").html());
     });
 
+    $('#editConsBtn').click(function(){
+        $('#features').val($(".Editor-editor").html());
+    });
 });

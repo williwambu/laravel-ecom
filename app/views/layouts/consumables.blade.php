@@ -9,40 +9,34 @@
                 <div class="row">
                     <!-- products section-->
                     <div class="col-md-12 product-section">
-                        <h3 class="title">{{$category->category_name}}</h3>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 cat-description">
-                                {{$category->description}}
-                            </div>
-                        </div>
-                        <div class="row row-centered">
-                            @if(count($products)==0)
-                                <div class="col-md-8 col-md-offset-2">
-                                    <h3>No products found.Try again</h3>
-                                </div>
+                        <h3 class="title">Consumables</h3>
 
+                        <div class="row row-centered">
+                            @if(count($consumables)==0)
+                                <div class="col-md-8 col-md-offset-2">
+                                    <h3>No consumables found.Try again later.</h3>
+                                </div>
                             @else
-                                @foreach($products as $product)
+                                @foreach($consumables as $consumable)
                                     <div class="col-md-3 col-md-height  product">
                                         <div class="row">
-                                            <p class="product-name">{{$product -> name}}</p>
+                                            <p class="product-name">{{$consumable -> name}}</p>
 
                                             <div class="col-md-10 col-md-offset-1">
-                                                {{HTML::image($product->picture,'image',['class'=>"product-img"])}}
+                                                {{HTML::image($consumable->path,'image',['class'=>"product-img"])}}
                                             </div>
                                             <div class="col-md-4 col-md-offset-1 item-price">
-                                                <button class="btn btn-details">Ksh. {{$product->price}}</button>
+                                                <button class="btn btn-details">Ksh. {{$consumable->price}}</button>
                                             </div>
                                             <div class="col-md-10 col-md-offset-1">
-                                                <ul>
-                                                    @foreach($product->features as $feature)
-                                                        <li> {{$feature ->feature}}</li>
-                                                    @endforeach
-                                                </ul>
+                                                {{$consumable -> features}}
                                             </div>
                                             <div class="col-md-4 col-md-offset-1">
-                                                <a class="btn btn-success add-to-cart" href="{{route('addToCart',array('id'=>$product->id))}}">
-                                                    <span class="glyphicon glyphicon-shopping-cart glyphicon-shopping-cart-sm"></span>Add to cart
+                                                <a class="btn btn-success add-to-cart"
+                                                   href="{{route('cons-add-to-cart',array('id'=>$consumable->id))}}">
+                                        <span
+                                                class="glyphicon glyphicon-shopping-cart glyphicon-shopping-cart-sm"></span>Add
+                                                    to cart
                                                 </a>
                                             </div>
                                         </div>
@@ -55,10 +49,10 @@
                 </div>
                 <!-- pagination section -->
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-8 col-md-offset-4">
                         <nav>
                             <ul class="pagination">
-                                {{$products->appends(Request::except('page'))->links()}}
+                                {{$consumables->appends(Request::except('page'))->links()}}
                             </ul>
                         </nav>
                     </div>

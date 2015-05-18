@@ -190,7 +190,6 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Cart'            => 'Gloudemans\Shoppingcart\Facades\Cart',
-
 	),
 
 );

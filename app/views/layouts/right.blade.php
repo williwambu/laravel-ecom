@@ -1,5 +1,5 @@
 <!-- right panel --->
-    <div class="col-md-3 right clear-padding ">
+    <div class="col-md-3 right clear-padding .hidden-sm .hidden-xs">
         <!-- find photocopier -->
         <div class="col-md-12">
             <div class="row find-copier">

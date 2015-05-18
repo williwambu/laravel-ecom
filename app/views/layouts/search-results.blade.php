@@ -9,20 +9,15 @@
                 <div class="row">
                     <!-- products section-->
                     <div class="col-md-12 product-section">
-                        <h3 class="title">{{$category->category_name}}</h3>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 cat-description">
-                                {{$category->description}}
-                            </div>
-                        </div>
+                        <h3 class="title">Search Results for {{$search_term}}</h3>
+
                         <div class="row row-centered">
                             @if(count($products)==0)
                                 <div class="col-md-8 col-md-offset-2">
-                                    <h3>No products found.Try again</h3>
+                                    <h3>No products found.Try using other words.</h3>
                                 </div>
-
                             @else
-                                @foreach($products as $product)
+                                @foreach($products[0] as $product)
                                     <div class="col-md-3 col-md-height  product">
                                         <div class="row">
                                             <p class="product-name">{{$product -> name}}</p>
@@ -34,15 +29,16 @@
                                                 <button class="btn btn-details">Ksh. {{$product->price}}</button>
                                             </div>
                                             <div class="col-md-10 col-md-offset-1">
-                                                <ul>
-                                                    @foreach($product->features as $feature)
-                                                        <li> {{$feature ->feature}}</li>
-                                                    @endforeach
-                                                </ul>
+                                                @foreach($product->features as $feature)
+                                                    {{$feature ->feature}}
+                                                @endforeach
                                             </div>
                                             <div class="col-md-4 col-md-offset-1">
-                                                <a class="btn btn-success add-to-cart" href="{{route('addToCart',array('id'=>$product->id))}}">
-                                                    <span class="glyphicon glyphicon-shopping-cart glyphicon-shopping-cart-sm"></span>Add to cart
+                                                <a class="btn btn-success add-to-cart"
+                                                   href="{{route('addToCart',array('id'=>$product->id))}}">
+                                        <span
+                                                class="glyphicon glyphicon-shopping-cart glyphicon-shopping-cart-sm"></span>Add
+                                                    to cart
                                                 </a>
                                             </div>
                                         </div>
@@ -53,17 +49,7 @@
                     </div>
                     <!-- end product section -->
                 </div>
-                <!-- pagination section -->
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <nav>
-                            <ul class="pagination">
-                                {{$products->appends(Request::except('page'))->links()}}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!-- end pagination section -->
+
             </div>
             <!-- end left panel -->
 

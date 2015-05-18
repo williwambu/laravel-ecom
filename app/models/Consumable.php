@@ -9,8 +9,9 @@
 class Consumable extends Eloquent
 {
 
-    protected $fillable = ['id', 'name', 'features', 'product_id','path'];
+    protected $fillable = ['id', 'name', 'features','price', 'product_id','path'];
     public $timestamps = false;
+    protected $table ='consumables';
 
     public function products()
     {
