@@ -25,8 +25,12 @@
                 <a href="{{route('home')}}" class="logo"><img src="http://placehold.it/60x60"></a>
             </div>
             <div class="row">
-                <div class="col-md-3 col-md-offset-6 col-sm-0">
+                <div class="col-md-2 col-md-offset-3">
+                    <div class="phone-number">Phone Number: 0700 203130</div>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-sm-0">
                     <div class="search-area">
+
                         <form method="post" action="{{route('search')}}">
                             <input type="text" placeholder="Search..." name="search-term">
                             <button type="submit"><span class="glyphicon glyphicon-search"></span></button>

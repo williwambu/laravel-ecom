@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="label" for="photocopy-color">By Color</label>
                             <select name="color" id="photocopy-color" class="form-control">
-                                <option value="black">Black</option>
+                                <option value="black">Color</option>
                                 <option value="black and white">Black and white</option>
                             </select>
                         </div>

@@ -12,7 +12,7 @@
                         <h3 class="title">Search Results for {{$search_term}}</h3>
 
                         <div class="row row-centered">
-                            @if(count($products)==0)
+                            @if(empty($products)||empty($products[0]) && empty($consumables))
                                 <div class="col-md-8 col-md-offset-2">
                                     <h3>No products found.Try using other words.</h3>
                                 </div>
@@ -32,6 +32,8 @@
                                                 @foreach($product->features as $feature)
                                                     {{$feature ->feature}}
                                                 @endforeach
+
+                                                    <a class="view-cons" href={{route('product-cons',array('id'=>$product -> id))}}>View Consumables</a>
                                             </div>
                                             <div class="col-md-4 col-md-offset-1">
                                                 <a class="btn btn-success add-to-cart"
@@ -45,6 +47,37 @@
                                     </div>
                                 @endforeach
                             @endif
+                                @if(count($products)== 0 && empty($consumables))
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <h3>No products found.Try using other words.</h3>
+                                    </div>
+                                @else
+                                    @foreach($consumables as $consumable)
+                                        <div class="col-md-3 col-md-height  product">
+                                            <div class="row">
+                                                <p class="product-name">{{$consumable -> name}}</p>
+
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    {{HTML::image($consumable->path,'image',['class'=>"product-img"])}}
+                                                </div>
+                                                <div class="col-md-4 col-md-offset-1 item-price">
+                                                    <button class="btn btn-details">Ksh. {{$consumable->price}}</button>
+                                                </div>
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    {{$consumable -> features}}
+                                                </div>
+                                                <div class="col-md-4 col-md-offset-1">
+                                                    <a class="btn btn-success add-to-cart"
+                                                       href="{{route('cons-add-to-cart',array('id'=>$consumable->id))}}">
+                                        <span
+                                                class="glyphicon glyphicon-shopping-cart glyphicon-shopping-cart-sm"></span>Add
+                                                        to cart
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                         </div>
                     </div>
                     <!-- end product section -->

@@ -28,41 +28,45 @@ class SearchController extends BaseController {
         $man = $this->searchManufacturers($search_term);
         $feat = $this->searchFeatures($search_term);
         $prod = $this->searchProducts($search_term);
-
+        $consumables = $this -> searchConsumables($search_term);
+        if(!$consumables){
+            $consumables = [];
+        }
         $total_ids = array();
         if ($cat) {
-           foreach($cat as $id){
-               array_push($total_ids,$id);
-           }
+            foreach ($cat as $id) {
+                array_push($total_ids, $id);
+            }
         }
         if ($man) {
-            foreach($man as $id){
-                array_push($total_ids,$id);
-           }
+            foreach ($man as $id) {
+                array_push($total_ids, $id);
+            }
         }
         if ($feat) {
-            foreach($feat as $id){
-                array_push($total_ids,$id);
-           }
+            foreach ($feat as $id) {
+                array_push($total_ids, $id);
+            }
         }
         if ($prod) {
-            foreach($prod as $id){
-                array_push($total_ids,$id);
-           }
+            foreach ($prod as $id) {
+                array_push($total_ids, $id);
+            }
         }
 
         $products = array();
-       if(count($total_ids) != 0){
+        if (count($total_ids) != 0) {
 
-            foreach($total_ids as $id){
-                $product = Product::find($id)->with('Features','Manufacturer') -> get();
+            foreach ($total_ids as $id) {
+                $product = Product::find($id)->with('Features', 'Manufacturer')->get();
 
-                array_push($products,$product);
+                array_push($products, $product);
             }
 
-           return View::make('layouts.search-results') -> with(array('products'=>$products,'search_term'=>$search_term1));
-       }
-        return View::make('layouts.search-results') -> with(array('products'=>$products,'search_term'=>$search_term1));
+            return View::make('layouts.search-results')->with(array('products' => $products, 'search_term' => $search_term1,
+                'consumables'=>$consumables));
+        }
+        return View::make('layouts.search-results')->with(array('products' => $products, 'search_term' => $search_term1,'consumables'=>$consumables));
     }
 
     public function searchManufacturers($search_term) {
@@ -140,8 +144,8 @@ class SearchController extends BaseController {
     }
 
     public function searchProducts($search_term) {
-        $param_array = $this->paramArray(5, $search_term);
-        $product_ids = DB::select('SELECT id FROM products WHERE name LIKE ? OR model LIKE ? OR series LIKE ? or color LIKE ? or speed LIKE ?', $param_array);
+        $param_array = $this->paramArray(6, $search_term);
+        $product_ids = DB::select('SELECT id FROM products WHERE name LIKE ? OR model LIKE ? OR series LIKE ? or color LIKE ? or speed LIKE ? OR price LIKE ?', $param_array);
         if (!empty($product_ids)) {
             $products_array = array();
             foreach ($product_ids as $id) {
@@ -163,5 +167,17 @@ class SearchController extends BaseController {
         }
 
         return $param_array;
+    }
+
+    public function searchConsumables($search_term){
+        $param_array = $this -> paramArray(2,$search_term);
+
+        $consumables = DB::select("SELECT * FROM consumables WHERE name LIKE ? OR features LIKE ?",$param_array);
+
+        if(!empty($consumables)){
+            return $consumables;
+        }
+
+        return false;
     }
 }

@@ -620,3 +620,18 @@ span.underline{
 .carousel-caption.right,.carousel-caption.left{
     background: none !important;
 }
+
+.phone-number{
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    position: relative;
+    top:25px;
+}
+
+.view-cons{
+    text-decoration: none;
+    font-weight: bold;
+    color:#D0690D;
+    line-height: 1.5;
+}

@@ -31,6 +31,20 @@ class AdminController extends BaseController {
         return 'login failed';
     }
 
+    public function updateAdmin(){
+        $username = Input::get('username');
+        $password = Input::get('password');
+
+        $user = Input::get('id');
+
+        $user -> username = $username;
+        $user -> password = $password;
+
+        $user -> save();
+
+        return 'Admin updated.';
+    }
+
     public function logout(){
         Auth::logout();
 

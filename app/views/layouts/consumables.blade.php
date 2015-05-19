@@ -48,15 +48,15 @@
                     <!-- end product section -->
                 </div>
                 <!-- pagination section -->
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-md-8 col-md-offset-4">
                         <nav>
                             <ul class="pagination">
-                                {{$consumables->appends(Request::except('page'))->links()}}
+
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div>-->
                 <!-- end pagination section -->
             </div>
             <!-- end left panel -->

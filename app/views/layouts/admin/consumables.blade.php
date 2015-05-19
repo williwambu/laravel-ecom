@@ -27,7 +27,7 @@
                                     <button class="btn btn-primary">Edit Consumable <span class="glyphicon glyphicon-edit"></span></button>
                                 </form>
                             </td>
-                            <td><form action="{{route('delete-product')}}">
+                            <td><form method="post" action="{{route('delete-consumable')}}">
                                     <input name="id" type="hidden" value="{{$consumable->id}}">
                                     <button class="btn btn-danger">Delete <span class="glyphicon glyphicon-remove"></span></button>
                                 </form>

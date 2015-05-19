@@ -47,7 +47,7 @@
                    <div class="form-group">
                        <label class="label" for="color">Color</label>
                        <select id="color" class="form-control" name="color">
-                           <option value="Black">Black</option>
+                           <option value="Black">Colored</option>
                            <option value="Black and White">Black and White</option>
                        </select>
                    </div>

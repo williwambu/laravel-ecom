@@ -32,6 +32,8 @@
                                     @foreach($product->features as $feature)
                                         {{$feature ->feature}}
                                     @endforeach
+
+                                        <a class="view-cons" href={{route('product-cons',array('id'=>$product -> id))}}>View Consumables</a>
                                 </div>
                                 <div class="col-md-4 col-md-offset-1">
                                     <a class="btn btn-success add-to-cart"
@@ -41,6 +43,7 @@
                                         to cart
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                         @endforeach

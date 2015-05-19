@@ -21,6 +21,6 @@ class Product extends \Eloquent {
 	}
 
     public function consumables(){
-        return $this -> hasOne('Consumable');
+        return $this -> hasMany('Consumable');
     }
 }

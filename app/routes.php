@@ -51,6 +51,8 @@ Route::get('products/{id}/consumables', array('uses' => 'ProductsController@getC
 
 Route::get('consumables/all', array('uses' => 'ConsumablesController@showAll', 'as' => 'consumables-all'));
 
+Route::get('products/{id}/consumables',array('uses'=>'ConsumablesController@showCons','as'=>'product-cons'));
+
 /**
  * Consumables cart routes
  */
@@ -101,6 +103,8 @@ Route::post('consumables/new', array('before' => 'auth', 'uses' => 'ConsumablesC
 Route::post('admin/edit-consumable', array('before' => 'auth', 'uses' => 'ConsumablesController@editConsumable', 'as' => 'edit-consumable'));
 
 Route::post('update-consumable', array('before' => 'auth', 'uses' => 'ConsumablesController@updateConsumable', 'as' => 'update-consumable'));
+
+Route::post('consumables/delete',array('before'=>'auth','uses'=>'ConsumablesController@deleteConsumable','as'=>'delete-consumable'));
 /*
  * layout.master composer
  */

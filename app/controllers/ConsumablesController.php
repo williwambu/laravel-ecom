@@ -32,7 +32,7 @@ class ConsumablesController extends BaseController {
         $consumable->path = 'consumables/' . $picture->getClientOriginalName();
         $consumable->save();
 
-        return REdirect::route('admin-show-all');
+        return Redirect::route('admin-show-all');
     }
 
     public function adminShowAll() {
@@ -64,8 +64,17 @@ class ConsumablesController extends BaseController {
         return Redirect::route('admin-show-all');
     }
 
+    public function showCons($id){
+
+        $product = Product::find($id);
+
+        $consumables = $product -> consumables;
+
+        return View::make('layouts.consumables') -> with(array('consumables' => $consumables)) ;
+    }
+
     public function deleteConsumable() {
-        $consumable = Consumble::find(Input::get('id'));
+        $consumable = Consumable::find(Input::get('id'));
 
         $consumable->delete();
 
